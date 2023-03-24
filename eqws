@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+#define N 6
+int top1=-1;
+int top2=-1;
+int s1[N];
+int s2[N];
+void push1(int a){
+s1[++top1]=a;
+}
+void push2(int a){
+s2[++top2]=a;
+}
+void pop1(){
+int x;
+x=s1[top1];
+return x;
+}
+void pop2(){
+int x;
+x=s2[top2];
+return x;
+}
+void enq(int a){
+push1(a);
+}
+void deq(){
+while(top1!=-1){
+push2(pop1());
+}
+pop2();
+while(top2!=-1){
+push1(pop2());
+}
+}
+void display(){
+int i;
+for(i=top;i>=0;i--){
+cout<<s1[i];
+}
+}
+int main(){
+enq(1);
+enq(2);
+enq(3);
+enq(4);
+enq(5);
+enq(6);
+cout<<"before;";
+display();
+deq();
+deq();
+cout<<"after";
+display();
+}
